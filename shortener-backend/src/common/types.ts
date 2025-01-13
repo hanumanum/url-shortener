@@ -1,0 +1,1 @@
+export type TAsyncResultTuple<T> = Promise<[Error | null | unknown, T | null]>;
