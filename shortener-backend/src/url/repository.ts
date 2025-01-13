@@ -1,23 +1,36 @@
-import { TAsyncResultTuple } from '../common/types';
+import { TAsyncResultTuple, TAsyncTypeORMResultTuple } from '../common/types';
 import { DbPostgresConnection } from '../connections/db.postgres';
 import { UrlEntity, IUrl } from './entity';
 import logger from '../utils/logger';
+import { TypeORMError } from 'typeorm';
 
 const urlRepository = DbPostgresConnection.getRepository(UrlEntity);
 
 type TSaveUrl = {
     originalUrl: string,
     userId: number | null,
+    shortCode: string
 }
 
 const saveUrl = async (urlInfo: TSaveUrl): TAsyncResultTuple<IUrl> => {
     try {
-        const { originalUrl, userId } = urlInfo;
-        const url = urlRepository.create({ originalUrl, userId });
+        const { originalUrl, shortCode, userId } = urlInfo;
+        const url = urlRepository.create({ originalUrl, userId, shortCode });
         const newURL = await urlRepository.save(url);
         return [null, newURL];
     } catch (error) {
         logger.logError('Error saving URL', error as Error, { urlInfo });
+        return [error as TypeORMError, null];
+    }
+}
+
+const findOneByShortCode = async (shortCode: string): TAsyncResultTuple<IUrl> => {
+    try {
+        const url = await urlRepository.findOneBy({ shortCode });
+        return [null, url];
+    }
+    catch (error) {
+        logger.logError('Error finding URL by short code', error as Error, { shortCode });
         return [error, null];
     }
 }
@@ -60,5 +73,6 @@ export default {
     saveUrl,
     findOneById,
     findByOriginalUrl,
-    findByUserId
+    findByUserId,
+    findOneByShortCode
 }

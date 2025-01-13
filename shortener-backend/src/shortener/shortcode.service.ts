@@ -1,5 +1,5 @@
 //TODO: emplement also randomSlugVersion
-import { decodeBase62, encodeBase62 } from "../utils/crypto";
+import { decodeBase62, encodeBase62, generateSlugByFromUUID } from "../utils/crypto";
 
 interface ISlugAlgorithm {
     idToSlug: (uniqueId: number) => string;
@@ -11,9 +11,14 @@ export const base62SlugAlgorithm: ISlugAlgorithm = {
     slugToId: (slug: string) => decodeBase62(slug)
 }
 
-export const getShortenerService = (slugAlgorithm: ISlugAlgorithm) => {
+export const getDeterministicShortenerService = (slugAlgorithm: ISlugAlgorithm) => {
     return {
         slugToId: slugAlgorithm.slugToId,
         idToSlug: slugAlgorithm.idToSlug
     }
 }
+
+export const getUniqueShortCode = () => {
+    const length = 6; //TODO: move to env variable
+    return generateSlugByFromUUID(length);
+} 

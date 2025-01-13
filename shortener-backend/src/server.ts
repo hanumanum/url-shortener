@@ -1,3 +1,4 @@
+//TODO: shortCode is better name than slug, rename all occurrences of slug to shortCode in all project files
 import express, { Request, Response } from 'express';
 import urlShortenerRouter from './shortener/routes';
 import logger from './utils/logger';
