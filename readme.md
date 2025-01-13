@@ -21,7 +21,7 @@ This project is a URL shortener service that allows users to shorten long URLs i
     ```
 2. Navigate to the project directory:
     ```
-    cd shortener
+    cd url-shortener
     ```
 3. Run docker:
     ```
@@ -30,6 +30,10 @@ This project is a URL shortener service that allows users to shorten long URLs i
 4. Access the application:
 
 Open your browser and navigate to `http://localhost:8080`
+
+## Desclaimer
+This project is for educational purposes only. It is not intended for production use.
+This project has some incomplete features and ideas to implement, see TODOs and comments in the code.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
