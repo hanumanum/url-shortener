@@ -29,7 +29,7 @@ This project is a URL shortener service that allows users to shorten long URLs i
     ```
 4. Access the application:
 
-Open your browser and navigate to `http://localhost:8080`
+Open your browser and navigate to `http://localhost:9999`
 
 ## Desclaimer
 This project is for educational purposes only. It is not intended for production use.
