@@ -16,7 +16,6 @@ export const decodeBase62 = (slug: string): number => {
   return [...slug].reduce((acc, char) => acc * BASE + ALPHABET.indexOf(char), 0);
 }
 
-
 export const generateSlug = (): string =>{
   const uuid = randomUUID();
   return uuid.replace(/-/g, '').slice(0, 8);

@@ -45,8 +45,15 @@ const findByOriginalUrl = async (originalUrl: string): TAsyncResultTuple<IUrl> =
 }
 
 //TODO: add pagination
-const findByUserId = async (userId: number): Promise<IUrl[]> => {
-    return await urlRepository.find({ where: { userId } });
+const findByUserId = async (userId: number): TAsyncResultTuple<IUrl[]> => {
+    try{
+        const urls = await urlRepository.find({ where: { userId } });
+        return [null, urls];
+    }
+    catch (error) {
+        logger.logError('Error finding URL by user ID', error as Error, { userId });
+        return [error, null];
+    }
 }
 
 export default {

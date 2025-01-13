@@ -1,5 +1,5 @@
-// INFO: Following crafted validation mechanism 
-// should be replaced with a proper validation library (Joi, Yup, etc...) in real world applications 
+// INFO: Following is a crafted validation mechanism 
+// should be replaced with a proper validation library (Joi, Yup, etc...) for real world applications
 
 const aphanumericRegex = /[^a-zA-Z0-9]/;
 export const slugValidations = (slug: any): string[] => {

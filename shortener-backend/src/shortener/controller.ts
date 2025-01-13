@@ -6,9 +6,8 @@ import { memoizeAsync } from '../utils/memoization';
 
 const urlShortenerService = getShortenerService(base62SlugAlgorithm);
 
-// INFO in real life scenarios, we would use a cache like Redis or Memcached
-const cacheTTL = 60 * 1000;
-const cachedFindOneBySlug = memoizeAsync(URLRepo.findOneById, cacheTTL);
+const cacheTTL = 60 * 1000; //TODO: move to env variable
+const cachedFindOneBySlug = memoizeAsync(URLRepo.findOneById, cacheTTL); // INFO in real life scenarios, we would use a cache like Redis or Memcached
 
 const getUrlBySlug = async (req: Request, res: Response) => {
     const { slug } = req.params;
@@ -41,6 +40,7 @@ const shortenURL = async (req: Request, res: Response) => {
         });
         return;
     }
+
     if (existingURL) {
         const slug = urlShortenerService.idToSlug(existingURL.id);
         res.status(200).json({
