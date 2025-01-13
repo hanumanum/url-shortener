@@ -14,4 +14,11 @@ urlShortenerRouter.post('/',
     ShortenerController.shortenURL
 );
 
+// Temporary route to update usage stats, should be moved to different route dedicated for statistics
+urlShortenerRouter.put('/stats/:slug',
+    [ShortenerValidations.validateSlug],
+    ShortenerController.saveStats
+);
+
+
 export default urlShortenerRouter;
