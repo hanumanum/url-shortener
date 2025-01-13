@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getShortenerService, base62SlugAlgorithm } from './shorter.service';
 import URLRepo from '../url/repository'
+import StatsRepo from '../statistics/repository'
 
 const urlShortenerService = getShortenerService(base62SlugAlgorithm);
 
@@ -65,8 +66,20 @@ const shortenURL = async (req: Request, res: Response) => {
     });
 }
 
+const saveStats = async (req: Request, res: Response) => {
+    const { slug } = req.params;
+    const [error, ] = await StatsRepo.insertOne(slug);
+    
+    if (error) {
+        res.status(500).json({ message: 'Error saving URL stat', errors: ['Error saving URL stats'] });
+        return
+    }
+
+    res.status(201).json({ message: `usage info saved` });
+}
 
 export default {
     getUrlBySlug,
-    shortenURL
+    shortenURL,
+    saveStats
 }

@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import { UrlEntity } from '../url/entity';
+import { UrlUsageStatsEntity } from '../statistics/entity';
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ export const DbPostgresConnection = new DataSource({
     database: process.env.DB_DATABASE_NAME || 'shortener_db',
     synchronize: process.env.DB_SYNCHRONIZE === 'true' || false,
     logging: process.env.NODE_ENV === 'development' || false,
-    entities: [UrlEntity],
+    entities: [UrlEntity, UrlUsageStatsEntity],
     migrations: [],
     subscribers: [],
 });
