@@ -31,7 +31,6 @@ const HomePage: React.FC = () => {
             {error && <p>{error}</p>}
             <ShortenForm onSubmit={handleShorten} />
             <ShortenedList urls={urls} />
-            
         </div>
     );
 };

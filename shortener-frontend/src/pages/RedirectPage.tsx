@@ -14,7 +14,13 @@ const RedirectPage: React.FC = () => {
             try {
                 const shortened = await getOriginalUrl(shortCode as string);
                 setMessage(shortened.data.message);
-                updateUsageStats(shortCode as string);
+                
+                try {
+                    await updateUsageStats(shortCode as string);
+                } catch (error) {
+                    console.log(error);
+                }
+
                 setTimeout(() => {
                     window.location.href = shortened.data.data.url;
                 }, 100)
