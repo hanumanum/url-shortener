@@ -17,7 +17,7 @@ This project is a URL shortener service that allows users to shorten long URLs i
 ## Installation
 1. Clone the repository:
     ```
-    git clone https://github.com/hanumanum/shortener.git
+    git clone https://github.com/hanumanum/url-shortener.git
     ```
 2. Navigate to the project directory:
     ```
