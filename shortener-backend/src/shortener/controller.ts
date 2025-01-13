@@ -4,7 +4,7 @@ import URLRepo from '../url/repository'
 import StatsRepo from '../statistics/repository'
 import { memoizeAsync } from '../utils/memoization';
 import logger from '../utils/logger';
-import { isUniqueConstranViolationError } from '../url/db';
+import { isUniqueConstranViolationError } from '../utils/db';
 
 const cacheTTL = 60 * 1000; //TODO: move to env variable
 const cachedFindOneBySlug = memoizeAsync(URLRepo.findOneByShortCode, cacheTTL); // INFO in real life scenarios, we would use a cache like Redis or Memcached
