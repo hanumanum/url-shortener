@@ -19,10 +19,10 @@ services:
   frontend:
     build: ./shortener-frontend
     environment:
-      APP_HOST: http://localhost:8080/
+      REACT_APP_HOST: http://localhost:9999
       REACT_APP_API_BASE_URL: http://localhost:3088/api
     ports:
-      - 8080:3000
+      - 9999:3000
   postgres:
     image: postgres
     environment:

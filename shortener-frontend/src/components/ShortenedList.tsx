@@ -5,7 +5,7 @@ interface ShortenedListProps {
     urls: { slug: string }[];
 }
 
-const thisHost = process.env.APP_HOST || 'http://localhost:8080';
+const thisHost = process.env.REACT_APP_HOST || 'http://localhost:8080';
 const makeShortUrl = (url: { slug: string }) => `${thisHost}/${url.slug}`;
 
 const ShortenedList: React.FC<ShortenedListProps> = ({ urls }) => {
