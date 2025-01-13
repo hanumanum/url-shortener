@@ -27,4 +27,10 @@ export const UrlUsageStatsEntity = new EntitySchema<IUrlUsageStats>({
       createDate: true,
     }
   },
+  indices: [
+    {
+      name: 'IDX_SHORT_CODE',
+      columns: ['shortCode'],
+    },
+  ],
 });
